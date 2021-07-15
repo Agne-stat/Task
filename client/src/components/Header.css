@@ -1,16 +1,33 @@
+/* Mobile first */
 header {
   height: 80px;
   width: 100%;
-  background-color: aqua;
   display: flex;
   justify-content: center;
   align-content: center;
 }
 
 nav {
+  margin: 0 auto;
   height: 100%;
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: space-between;
   align-content: center;
+}
+
+nav div {
+  margin-top: 15px;
+}
+
+button {
+  border: none;
+  background-color: #fff;
+  padding: 10px;
+  color: #000;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #99cc33;
 }
