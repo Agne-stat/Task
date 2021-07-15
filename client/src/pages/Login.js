@@ -4,10 +4,12 @@ import './Login.css'
 import axios from 'axios'
 import { Redirect } from 'react-router';
 
+
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(null);
+    const [errMessage, setErrMessage] = useState('')
 
     useEffect(() => {
         setUsername('')
@@ -27,11 +29,10 @@ function Login() {
         axios.post('https://playground.tesonet.lt/v1/tokens', {username, password})
         .then((res) => {
             localStorage.setItem('testio-login', res.data.token)
-            console.log(res.data)
             setRedirect('/home')
         })
         .catch((err) => {
-            console.log(err)
+            setErrMessage('Wrong username or password')
         })
     }
 
@@ -45,10 +46,12 @@ function Login() {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="login-container-form">
+                        
                         <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}></input>
                         <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                         <button>Log In</button>
                     </div>
+                    <p>{errMessage}</p>
                 </form>
             </div>
         </main>

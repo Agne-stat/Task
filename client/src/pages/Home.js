@@ -22,8 +22,9 @@ function Home() {
     useEffect(() => {
         axios.get('https://playground.tesonet.lt/v1/servers')
         .then((res) => {
-            setData(res.data)
-            console.log(res)
+            let unsortedData=res.data
+            let sortedData = unsortedData.sort((a,b) => a.distance - b.distance)
+            setData(sortedData)
         })
     }, [])
 
